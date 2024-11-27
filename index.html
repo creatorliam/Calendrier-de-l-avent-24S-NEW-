@@ -15,6 +15,7 @@
             margin: 0 auto;
             border-collapse: collapse;
             width: 80%;
+            display: none;
         }
         table, th, td {
             border: 1px solid #000;
@@ -27,12 +28,36 @@
             background-color: #4CAF50;
             color: white;
         }
+        #reveal-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #reveal-button:hover {
+            background-color: #45a049;
+        }
+        @keyframes confetti {
+            0% {transform: translateY(0); opacity: 1;}
+            100% {transform: translateY(300px); opacity: 0;}
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f39c12;
+            animation: confetti 1s linear infinite;
+            top: -10px;
+        }
     </style>
 </head>
 <body>
     <h1>Chocolate Calendar Allocation</h1>
     <p>Check daily to see who is selected for the chocolate!</p>
-    <table>
+    <button id="reveal-button">Reveal Today's Chocolates!</button>
+    <table id="calendar-table">
         <thead>
             <tr>
                 <th>Day</th>
@@ -43,7 +68,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Allocation Data -->
             <tr><td>1</td><td>Emma M</td><td>Thibaut</td><td>Romain</td><td>Liam</td></tr>
             <tr><td>2</td><td>Myriam F</td><td>Andrea</td><td>Emma G</td><td>Aude</td></tr>
             <tr><td>3</td><td>Morgan</td><td>Thibaut</td><td>Myriam S</td><td>Axelle</td></tr>
@@ -70,5 +94,30 @@
             <tr><td>24</td><td>Andrea</td><td>Victoria</td><td>Julien</td><td>Maria</td></tr>
         </tbody>
     </table>
+    <script>
+        document.getElementById("reveal-button").addEventListener("click", function() {
+            document.getElementById("calendar-table").style.display = "table";
+            createConfetti();
+        });
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                let confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.animationDuration = Math.random() * 2 + 1 + "s";
+                document.body.appendChild(confetti);
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ["#f39c12", "#e74c3c", "#9b59b6", "#1abc9c", "#3498db"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
 </body>
 </html>
