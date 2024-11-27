@@ -83,8 +83,8 @@
 <body>
     <h1>Calendrier de l'avent 24S</h1>
     <div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Father_Christmas_-_The_Children%27s_Encyclopaedia_%281910%29.png/800px-Father_Christmas_-_The_Children%27s_Encyclopaedia_%281910%29.png" alt="Father Christmas" class="christmas-image">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Christmas_Elf.png/800px-Christmas_Elf.png" alt="Christmas Elf" class="christmas-image">
+        <img src="https://media.istockphoto.com/id/1357890892/fr/vectoriel/mignon-p%C3%A8re-no%C3%ABl-avec-cadeau-de-no%C3%ABl-illustration-vectorielle.jpg?s=612x612&w=0&k=20&c=NNGuQ_5o5ZwKaqwMkFVBMOMmw_TeV936oKtZjOc5T18=" alt="Father Christmas" class="christmas-image">
+        <img src="https://static.wikia.nocookie.net/powerlisting/images/7/7e/Christmas-elf-cartoon-cute-png-image.png/revision/latest/thumbnail/width/360/height/450?cb=20231220164902" alt="Christmas Elf" class="christmas-image">
         <img src="https://pbs.twimg.com/profile_images/1555495441789292545/dm6BpQWX_400x400.jpg" alt="Logo" class="christmas-image">
     </div>
     <div class="lights">
@@ -140,15 +140,16 @@
         document.getElementById("reveal-button").addEventListener("click", function() {
             const today = new Date().getDate();
             const rows = document.querySelectorAll("#calendar-table tbody tr");
-            let found = false;
             rows.forEach(row => {
-                if (parseInt(row.cells[0].innerText) === today) {
-                    row.style.display = "table-row";
-                    found = true;
-                } else {
-                    row.style.display = "none";
-                }
+                row.style.display = "none";
             });
+            const todayRow = document.querySelector(`#calendar-table tbody tr:nth-child(${today})`);
+            if (todayRow) {
+                todayRow.style.display = "table-row";
+                document.getElementById("calendar-table").style.display = "table";
+                createConfetti();
+            }
+        });
             if (found) {
                 document.getElementById("calendar-table").style.display = "table";
                 createConfetti();
