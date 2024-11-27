@@ -45,23 +45,6 @@
         #reveal-button:hover {
             background-color: #45a049;
         }
-        .lights {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .light {
-            width: 20px;
-            height: 20px;
-            margin: 0 5px;
-            border-radius: 50%;
-            animation: blink 2s infinite alternate;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            100% { opacity: 0.3; }
-        }
         @keyframes confetti {
             0% {transform: translateY(0); opacity: 1;}
             100% {transform: translateY(300px); opacity: 0;}
@@ -86,16 +69,6 @@
         <img src="https://media.istockphoto.com/id/1357890892/fr/vectoriel/mignon-p%C3%A8re-no%C3%ABl-avec-cadeau-de-no%C3%ABl-illustration-vectorielle.jpg?s=612x612&w=0&k=20&c=NNGuQ_5o5ZwKaqwMkFVBMOMmw_TeV936oKtZjOc5T18=" alt="Father Christmas" class="christmas-image">
         <img src="https://static.wikia.nocookie.net/powerlisting/images/7/7e/Christmas-elf-cartoon-cute-png-image.png/revision/latest/thumbnail/width/360/height/450?cb=20231220164902" alt="Christmas Elf" class="christmas-image">
         <img src="https://pbs.twimg.com/profile_images/1555495441789292545/dm6BpQWX_400x400.jpg" alt="Logo" class="christmas-image">
-    </div>
-    <div class="lights">
-        <div class="light" style="background-color: red;"></div>
-        <div class="light" style="background-color: green;"></div>
-        <div class="light" style="background-color: yellow;"></div>
-        <div class="light" style="background-color: blue;"></div>
-        <div class="light" style="background-color: red;"></div>
-        <div class="light" style="background-color: green;"></div>
-        <div class="light" style="background-color: yellow;"></div>
-        <div class="light" style="background-color: blue;"></div>
     </div>
     <p>Check daily to see who is selected for the chocolate!</p>
     <button id="reveal-button">Reveal Today's Chocolates!</button>
@@ -146,11 +119,6 @@
             const todayRow = document.querySelector(`#calendar-table tbody tr:nth-child(${today})`);
             if (todayRow) {
                 todayRow.style.display = "table-row";
-                document.getElementById("calendar-table").style.display = "table";
-                createConfetti();
-            }
-        });
-            if (found) {
                 document.getElementById("calendar-table").style.display = "table";
                 createConfetti();
             }
