@@ -121,6 +121,15 @@
                 todayRow.style.display = "table-row";
                 document.getElementById("calendar-table").style.display = "table";
                 createConfetti();
+            } else {
+                alert('The calendar starts from December 1st. Please check back then!');
+            }
+        });
+            const todayRow = document.querySelector(`#calendar-table tbody tr:nth-child(${today})`);
+            if (todayRow) {
+                todayRow.style.display = "table-row";
+                document.getElementById("calendar-table").style.display = "table";
+                createConfetti();
             }
         });
 
