@@ -60,15 +60,15 @@
         const totalChocolates = 31 * 4;
         const days = Array.from({ length: 24 }, () => []);
 
+        // Distribute names evenly over 24 days
+        names.forEach((name, index) => {
+            days[index % 24].push(name);
+        });
+
         // Distribute chocolates over 24 days
         for (let i = 0; i < totalChocolates; i++) {
             days[i % 24].push("Chocolat");
         }
-
-        // Distribute names over 24 days
-        names.forEach((name, index) => {
-            days[index % 24].push(name);
-        });
 
         const calendar = document.getElementById("calendar");
 
