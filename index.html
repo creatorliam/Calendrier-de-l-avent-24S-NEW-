@@ -4,103 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier de l'avent 24S</title>
-    <style>
-        body {
-            background-color: #ffefe0;
-            font-family: 'Arial, sans-serif';
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #b22222;
-            font-size: 3em;
-        }
-        #calendar {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 15px;
-            margin: 50px auto;
-            max-width: 800px;
-        }
-        .day {
-            background-color: #ffe4b5;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .day:hover {
-            background-color: #ffdead;
-        }
-        .day.selected {
-            background-color: #b22222;
-            color: white;
-        }
-        .names {
-            margin-top: 30px;
-            font-size: 1.5em;
-            color: #b22222;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Calendrier de l'avent 24S</h1>
-    <div id="calendar"></div>
-    <div id="names" class="names"></div>
-
-    <script>
-        const names = [
-            "Maud", "Julien", "Thibaut", "Emma M", "Maria", "Camille", "Emma G", "Axelle", "Romain", "Marion", 
-            "Myriam S", "Manon", "Chloé", "Agathe", "Lola", "Victoria", "Liam", "Margaux", "Aude", "Morgan", 
-            "Andrea", "Claire", "Ségolène", "Philippine", "Myriam F"
-        ];
-
-        // Total chocolates: 31 * 4 = 124
-        const totalChocolates = 31 * 4;
-        const days = Array.from({ length: 24 }, () => []);
-
-        // Distribute names evenly over 24 days
-        let nameIndex = 0;
-        while (nameIndex < names.length) {
-            for (let i = 0; i < 24 && nameIndex < names.length; i++) {
-                days[i].push(names[nameIndex]);
-                nameIndex++;
-            }
-        }
-
-        // Distribute chocolates evenly over 24 days
-        let chocolateIndex = 0;
-        while (chocolateIndex < totalChocolates) {
-            for (let i = 0; i < 24 && chocolateIndex < totalChocolates; i++) {
-                days[i].push("Chocolat");
-                chocolateIndex++;
-            }
-        }
-
-        const calendar = document.getElementById("calendar");
-
-        // Create calendar days
-        for (let i = 1; i <= 24; i++) {
-            const dayDiv = document.createElement("div");
-            dayDiv.classList.add("day");
-            dayDiv.textContent = `Jour ${i}`;
-            dayDiv.addEventListener("click", () => {
-                document.querySelectorAll(".day").forEach(day => day.classList.remove("selected"));
-                dayDiv.classList.add("selected");
-                showNames(i - 1);
-            });
-            calendar.appendChild(dayDiv);
-        }
-
-        function showNames(dayIndex) {
-            const namesDiv = document.getElementById("names");
-            if (days[dayIndex].length > 0) {
-                namesDiv.textContent = `Contenu pour le jour ${dayIndex + 1}: ${days[dayIndex].join(", ")}`;
-            } else {
-                namesDiv.textContent = `Aucun contenu pour le jour ${dayIndex + 1}`;
-            }
-        }
-    </script>
+    <header>
+        <h1>🎄 Calendrier de l'avent 24S 🎅</h1>
+    </header>
+    <main>
+        <div class="calendar-grid">
+            <!-- Boxes for each day -->
+            <script>
+                // Generate the calendar boxes
+                for (let i = 1; i <= 24; i++) {
+                    document.write(`
+                        <div class="day-box" id="day-${i}">
+                            <button onclick="openBox(${i})">Jour ${i}</button>
+                            <div class="content hidden" id="content-${i}">
+                                <!-- Content will be inserted dynamically -->
+                            </div>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+    </main>
+    <footer>
+        <p>✨ Joyeux Noël et Bonne Année 2024 ✨</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f3e9;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #d62828;
+    color: #fff;
+    padding: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+}
+
+.day-box {
+    background-color: #f77f00;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #003049;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d62828;
+}
+
+.content {
+    margin-top: 1rem;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+// Content for each day
+const adventContent = {
+    1: "Maud, Liam, Myriam S, Axelle",
+    2: "Julien, Chloé, Philippine, Claire",
+    3: "Thibaut, Margaux, Andrea, Agathe",
+    4: "Emma M, Aude, Marion, Romain",
+    5: "Maria, Lola, Myriam F, Victoria",
+    6: "Camille, Morgan, Ségolène, Manon",
+    7: "Emma G, Maud, Liam, Philippine",
+    8: "Axelle, Chloé, Agathe, Thibaut",
+    9: "Romain, Andrea, Margaux, Claire",
+    10: "Marion, Aude, Victoria, Camille",
+    11: "Myriam S, Maria, Morgan, Lola",
+    12: "Manon, Emma M, Julien, Ségolène",
+    13: "Chloé, Axelle, Maud, Andrea",
+    14: "Thibaut, Claire, Margaux, Romain",
+    15: "Agathe, Victoria, Morgan, Aude",
+    16: "Camille, Emma G, Myriam F, Philippine",
+    17: "Lola, Ségolène, Julien, Maria",
+    18: "Emma M, Manon, Axelle, Liam",
+    19: "Maud, Thibaut, Claire, Andrea",
+    20: "Victoria, Chloé, Margaux, Camille",
+    21: "Romain, Morgan, Aude, Lola",
+    22: "Emma G, Myriam S, Philippine, Maria",
+    23: "Camille, Axelle, Margaux, Chloé",
+    24: "Emma G, Thibaut, Lola, Agathe"
+};
+
+// Unlock and display content for each day
+function openBox(day) {
+    const today = new Date();
+    const currentDay = today.getDate();
+
+    if (day > currentDay) {
+        alert("Patience! This box unlocks on December " + day);
+    } else {
+        const contentDiv = document.getElementById(`content-${day}`);
+        contentDiv.innerHTML = adventContent[day];
+        contentDiv.classList.remove("hidden");
+    }
+}
