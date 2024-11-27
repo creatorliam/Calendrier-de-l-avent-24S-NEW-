@@ -12,7 +12,7 @@
             padding: 20px;
             background-image: url('https://images.unsplash.com/photo-1576603391754-df829b2e3f6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
-            color: white;
+            color: black;
         }
         table {
             margin: 0 auto;
@@ -30,7 +30,7 @@
         }
         th {
             background-color: rgba(0, 128, 0, 0.8);
-            color: white;
+            color: black;
         }
         #reveal-button {
             padding: 10px 20px;
@@ -119,4 +119,9 @@
             if (today >= 1 && today <= 24) {
                 const todayRow = document.querySelector(`#calendar-table tbody tr:nth-child(${today})`);
                 if (todayRow) {
-                    todayRow.style.display =
+                    todayRow.style.display = "table-row";
+                    document.getElementById("calendar-table").style.display = "table";
+                    createConfetti();
+                } else {
+                    alert('The calendar starts from December 1st. Please check back then!');
+                }
