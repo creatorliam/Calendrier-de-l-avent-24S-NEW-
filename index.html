@@ -61,13 +61,21 @@
         const days = Array.from({ length: 24 }, () => []);
 
         // Distribute names evenly over 24 days
-        names.forEach((name, index) => {
-            days[index % 24].push(name);
-        });
+        let nameIndex = 0;
+        while (nameIndex < names.length) {
+            for (let i = 0; i < 24 && nameIndex < names.length; i++) {
+                days[i].push(names[nameIndex]);
+                nameIndex++;
+            }
+        }
 
-        // Distribute chocolates over 24 days
-        for (let i = 0; i < totalChocolates; i++) {
-            days[i % 24].push("Chocolat");
+        // Distribute chocolates evenly over 24 days
+        let chocolateIndex = 0;
+        while (chocolateIndex < totalChocolates) {
+            for (let i = 0; i < 24 && chocolateIndex < totalChocolates; i++) {
+                days[i].push("Chocolat");
+                chocolateIndex++;
+            }
         }
 
         const calendar = document.getElementById("calendar");
