@@ -56,8 +56,16 @@
             "Andrea", "Claire", "Ségolène", "Philippine", "Myriam F"
         ];
 
-        // Split names evenly over 24 days
+        // Total chocolates: 31 * 4 = 124
+        const totalChocolates = 31 * 4;
         const days = Array.from({ length: 24 }, () => []);
+
+        // Distribute chocolates over 24 days
+        for (let i = 0; i < totalChocolates; i++) {
+            days[i % 24].push("Chocolat");
+        }
+
+        // Distribute names over 24 days
         names.forEach((name, index) => {
             days[index % 24].push(name);
         });
@@ -80,9 +88,9 @@
         function showNames(dayIndex) {
             const namesDiv = document.getElementById("names");
             if (days[dayIndex].length > 0) {
-                namesDiv.textContent = `Nom(s) pour le jour ${dayIndex + 1}: ${days[dayIndex].join(", ")}`;
+                namesDiv.textContent = `Contenu pour le jour ${dayIndex + 1}: ${days[dayIndex].join(", ")}`;
             } else {
-                namesDiv.textContent = `Aucun nom pour le jour ${dayIndex + 1}`;
+                namesDiv.textContent = `Aucun contenu pour le jour ${dayIndex + 1}`;
             }
         }
     </script>
