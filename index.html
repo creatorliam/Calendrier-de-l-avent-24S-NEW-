@@ -1,77 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advent Name Draw</title>
+    <title>Calendrier de l'avent 24S</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #ffefe0;
+            font-family: 'Arial, sans-serif';
             text-align: center;
             padding: 50px;
         }
-        .day {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            display: inline-block;
-            width: 200px;
+        h1 {
+            color: #b22222;
+            font-size: 3em;
         }
-        .covered {
-            background-color: #ccc;
-            color: #fff;
-            cursor: not-allowed;
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin: 50px auto;
+            max-width: 800px;
+        }
+        .day {
+            background-color: #ffe4b5;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .day:hover {
+            background-color: #ffdead;
+        }
+        .day.selected {
+            background-color: #b22222;
+            color: white;
+        }
+        .names {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #b22222;
         }
     </style>
 </head>
 <body>
-    <h1>Advent Name Draw</h1>
-    <div id="drawContainer"></div>
+    <h1>Calendrier de l'avent 24S</h1>
+    <div id="calendar"></div>
+    <div id="names" class="names"></div>
 
     <script>
         const names = [
-            "Maud", "Julien", "Thibaut", "Emma M", "Maria", "Camille", "Emma G", "Axelle", "Romain", "Marion", "Myriam S",
-            "Manon", "Chloé", "Agathe", "Lola", "Victoria", "Liam", "Margaux", "Aude", "Morgan", "Andrea", "Claire",
-            "Ségolène", "Philippine", "Myriam F"
+            "Maud", "Julien", "Thibaut", "Emma M", "Maria", "Camille", "Emma G", "Axelle", "Romain", "Marion", 
+            "Myriam S", "Manon", "Chloé", "Agathe", "Lola", "Victoria", "Liam", "Margaux", "Aude", "Morgan", 
+            "Andrea", "Claire", "Ségolène", "Philippine", "Myriam F"
         ];
 
-        function createDraw() {
-            let drawContainer = document.getElementById("drawContainer");
-            let namesPerDay = 4;
-            let totalDays = 24;
+        // Split names evenly over 24 days
+        const days = Array.from({ length: 24 }, () => []);
+        names.forEach((name, index) => {
+            days[index % 24].push(name);
+        });
 
-            // Split names evenly across the 24 days
-            let namesSchedule = [];
-            for (let i = 0; i < totalDays; i++) {
-                namesSchedule.push(names.slice(i * namesPerDay, (i + 1) * namesPerDay));
-            }
+        const calendar = document.getElementById("calendar");
 
-            const today = new Date().getDate();
-
-            for (let day = 1; day <= totalDays; day++) {
-                let dayDiv = document.createElement("div");
-                dayDiv.classList.add("day");
-
-                if (day > today) {
-                    dayDiv.classList.add("covered");
-                    dayDiv.innerHTML = `<h2>Day ${day}</h2><p>Covered</p>`;
-                } else {
-                    dayDiv.innerHTML = `<h2>Day ${day}</h2>`;
-
-                    namesSchedule[day - 1].forEach(name => {
-                        let nameElement = document.createElement("p");
-                        nameElement.textContent = name;
-                        dayDiv.appendChild(nameElement);
-                    });
-                }
-
-                drawContainer.appendChild(dayDiv);
-            }
+        // Create calendar days
+        for (let i = 1; i <= 24; i++) {
+            const dayDiv = document.createElement("div");
+            dayDiv.classList.add("day");
+            dayDiv.textContent = `Jour ${i}`;
+            dayDiv.addEventListener("click", () => {
+                document.querySelectorAll(".day").forEach(day => day.classList.remove("selected"));
+                dayDiv.classList.add("selected");
+                showNames(i - 1);
+            });
+            calendar.appendChild(dayDiv);
         }
 
-        createDraw();
+        function showNames(dayIndex) {
+            const namesDiv = document.getElementById("names");
+            if (days[dayIndex].length > 0) {
+                namesDiv.textContent = `Nom(s) pour le jour ${dayIndex + 1}: ${days[dayIndex].join(", ")}`;
+            } else {
+                namesDiv.textContent = `Aucun nom pour le jour ${dayIndex + 1}`;
+            }
+        }
     </script>
 </body>
 </html>
