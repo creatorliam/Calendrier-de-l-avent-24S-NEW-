@@ -67,7 +67,7 @@
     <h1>Calendrier de l'avent 24S</h1>
     <div>
         <img src="https://media.istockphoto.com/id/1357890892/fr/vectoriel/mignon-p%C3%A8re-no%C3%ABl-avec-cadeau-de-no%C3%ABl-illustration-vectorielle.jpg?s=612x612&w=0&k=20&c=NNGuQ_5o5ZwKaqwMkFVBMOMmw_TeV936oKtZjOc5T18=" alt="Father Christmas" class="christmas-image">
-        <img src="https://static.wikia.nocookie.net/powerlisting/images/7/7e/Christmas-elf-cartoon-cute-png-image.png/revision/latest/thumbnail/width/360/height/450?cb=20231220164902" alt="Christmas Elf" class="christmas-image">
+        <img src="https://static.wikia.nocookie.net/powerlisting/images/7/7e/Christmas-elf-cartoon-cute-png-image.png" alt="Christmas Elf" class="christmas-image">
         <img src="https://pbs.twimg.com/profile_images/1555495441789292545/dm6BpQWX_400x400.jpg" alt="Logo" class="christmas-image">
     </div>
     <p>Check daily to see who is selected for the chocolate!</p>
@@ -116,41 +116,7 @@
             rows.forEach(row => {
                 row.style.display = "none";
             });
-            const todayRow = document.querySelector(`#calendar-table tbody tr:nth-child(${today})`);
-            if (todayRow) {
-                todayRow.style.display = "table-row";
-                document.getElementById("calendar-table").style.display = "table";
-                createConfetti();
-            } else {
-                alert('The calendar starts from December 1st. Please check back then!');
-            }
-        });
-            const todayRow = document.querySelector(`#calendar-table tbody tr:nth-child(${today})`);
-            if (todayRow) {
-                todayRow.style.display = "table-row";
-                document.getElementById("calendar-table").style.display = "table";
-                createConfetti();
-            }
-        });
-
-        function createConfetti() {
-            for (let i = 0; i < 100; i++) {
-                let confetti = document.createElement("div");
-                confetti.classList.add("confetti");
-                confetti.style.left = Math.random() * 100 + "vw";
-                confetti.style.backgroundColor = getRandomColor();
-                confetti.style.animationDuration = Math.random() * 2 + 1 + "s";
-                document.body.appendChild(confetti);
-                setTimeout(() => {
-                    confetti.remove();
-                }, 3000);
-            }
-        }
-
-        function getRandomColor() {
-            const colors = ["#f39c12", "#e74c3c", "#9b59b6", "#1abc9c", "#3498db"];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-    </script>
-</body>
-</html>
+            if (today >= 1 && today <= 24) {
+                const todayRow = document.querySelector(`#calendar-table tbody tr:nth-child(${today})`);
+                if (todayRow) {
+                    todayRow.style.display =
