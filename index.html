@@ -96,6 +96,15 @@
     </table>
     <script>
         document.getElementById("reveal-button").addEventListener("click", function() {
+            const today = new Date().getDate();
+            const rows = document.querySelectorAll("#calendar-table tbody tr");
+            rows.forEach(row => {
+                if (parseInt(row.cells[0].innerText) === today) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
             document.getElementById("calendar-table").style.display = "table";
             createConfetti();
         });
