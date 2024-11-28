@@ -48,7 +48,7 @@
             width: 10px;
             height: 10px;
             background-color: #f39c12;
-            animation: confetti 1s linear infinite;
+            animation: confetti 1.5s linear infinite;
             top: -10px;
         }
     </style>
@@ -106,15 +106,14 @@
 
             tableRows.forEach(row => {
                 const day = parseInt(row.cells[0].textContent, 10);
-                if (day === currentDay) {
-                    row.style.display = "table-row";
-                    createConfetti();
-                } else if (day < currentDay) {
+                if (day <= currentDay) {
                     row.style.display = "table-row";
                 } else {
                     row.style.display = "none";
                 }
             });
+
+            createConfetti();
         });
 
         function createConfetti() {
