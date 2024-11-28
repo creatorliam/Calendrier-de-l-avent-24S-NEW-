@@ -96,26 +96,25 @@
     </table>
     <script>
         document.getElementById("reveal-button").addEventListener("click", function () {
-            const tableRows = document.querySelectorAll("#calendar-table tbody tr");
-            const today = new Date();
-            const currentDay = today.getDate();
-
-            // Reveal the calendar if hidden
             const table = document.getElementById("calendar-table");
             table.style.display = "table";
 
-            // Loop through rows and reveal only up to today's date
+            const today = new Date();
+            const currentDay = today.getDate();
+
+            const tableRows = document.querySelectorAll("#calendar-table tbody tr");
+
             tableRows.forEach(row => {
                 const day = parseInt(row.cells[0].textContent, 10);
-                if (day <= currentDay) {
-                    row.style.display = "table-row"; // Show the row
+                if (day === currentDay) {
+                    row.style.display = "table-row";
+                    createConfetti();
+                } else if (day < currentDay) {
+                    row.style.display = "table-row";
                 } else {
-                    row.style.display = "none"; // Hide future days
+                    row.style.display = "none";
                 }
             });
-
-            // Trigger confetti
-            createConfetti();
         });
 
         function createConfetti() {
