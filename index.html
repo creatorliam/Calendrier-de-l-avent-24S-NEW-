@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chocolate Calendar Allocation</title>
+    <title>Calendrier de l'avent 24S</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             text-align: center;
             padding: 20px;
+        }
+        img.logo {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        img.decor {
+            max-width: 150px;
+            margin: 10px;
         }
         table {
             margin: 0 auto;
@@ -54,9 +62,23 @@
     </style>
 </head>
 <body>
-    <h1>Chocolate Calendar Allocation</h1>
-    <p>Check daily to see who is selected for the chocolate!</p>
-    <button id="reveal-button">Reveal Today's Chocolates!</button>
+    <!-- Company Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/24_Sevres_Logo.png" alt="Logo 24S" class="logo">
+
+    <h1>Calendrier de l'avent 24S</h1>
+    <p>Reviens chaque jour pour recevoir ton chocolat !</p>
+
+    <!-- Santa Claus and Elf Images -->
+    <div>
+        <img src="https://culturepdh.com/wp-content/uploads/2022/10/2022-12-10-BD-p%C3%A8re-No%C3%ABl.png" alt="Père Noël" class="decor">
+        <img src="https://www.123-stickers.com/8344-large_default/autocollant-pere-noel-et-cadeaux.jpg" alt="Père Noël et Cadeaux" class="decor">
+        <img src="https://www.123-stickers.com/8346-thickbox/autocollant-pere-noel-et-sa-hotte.jpg" alt="Père Noël et Hotte" class="decor">
+        <img src="https://img.freepik.com/premium-vector/cute-fantasy-christmas-elf-illustration-vector-clipart_616819-1389.jpg" alt="Elf" class="decor">
+        <img src="https://img.freepik.com/premium-vector/cute-cartoon-christmas-elf-girl_214720-606.jpg" alt="Elf Girl" class="decor">
+        <img src="https://media.istockphoto.com/id/1071962176/vector/little-elf-hanging-upside-down-isolated.jpg?s=612x612&w=0&k=20&c=5D68qXlphEyXUZ2Ny5SRQLt4FYGWCY5v64IGEqAqJo4=" alt="Elf Hanging" class="decor">
+    </div>
+
+    <button id="reveal-button">Dévoile les chocolats du jour!</button>
     <table id="calendar-table">
         <thead>
             <tr>
